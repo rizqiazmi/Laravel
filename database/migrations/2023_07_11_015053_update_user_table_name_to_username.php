@@ -2,27 +2,18 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class UpdateUserTableNameToUsername extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->rename
-        // });
+        DB::statement('ALTER TABLE users CHANGE name username VARCHAR(255)');
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        DB::statement('ALTER TABLE users CHANGE username name VARCHAR(255)');
     }
-};
+}
